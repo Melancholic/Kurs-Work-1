@@ -1,0 +1,13 @@
+KursWork.aux, KursWork.log, KursWork.out, KursWork.toc -- pdflatex logs
+KursWork.pdf -- final file
+KursWork.tex -- source file
+README -- this file
+code.pas -- Source code with numbers for LaTeX
+graphic.log -- Data for graphics GNUplot
+graphic.plt -- Script for GNUplot
+graphic.png -- Final image with  graphics
+kurs14 -- Binary file
+kurs14.o -- Object file
+kurs14.pas -- Source code 
+listing -- a listing with table for LaTeX
+
