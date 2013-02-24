@@ -1,3 +1,9 @@
+Nagorny Andrey
+14IVT-2DB-005
+Read only!
+=====================================================================
+Files list:
+======================================================================
 KursWork.aux, KursWork.log, KursWork.out, KursWork.toc -- pdflatex logs
 KursWork.pdf -- final file
 KursWork.tex -- source file
@@ -10,4 +16,8 @@ kurs14 -- Binary file
 kurs14.o -- Object file
 kurs14.pas -- Source code 
 listing -- a listing with table for LaTeX
-
+scheme.flv -- a project file for Kivio
+scheme.png -- A final image with scheme
+timer.c -- Source code with systems timer functions;
+timer.o -- Object file with systems timer functions;
+=======================================================================
