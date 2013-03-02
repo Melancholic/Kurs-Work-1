@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.1.11)  24 FEB 2013 18:26
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2013.1.11)  2 MAR 2013 20:57
 entering extended mode
  %&-line parsing enabled.
 **KursWork.tex
@@ -1035,13 +1035,13 @@ been already used, duplicate ignored
 l.80     \item Р
                 •СЃР»Рё РїСЂРµРґС‹РґСѓС‰РёР№ СЌР»РµРјРµРЅС‚ -- РїСЂР°РІС‹Р№,...
 [1]
-Overfull \hbox (8.88698pt too wide) in paragraph at lines 88--91
+Overfull \hbox (8.88698pt too wide) in paragraph at lines 90--93
 []\T2A/cmr/m/n/10.95 Суть данного метода заключается в нахождении такого элемен
 та сортируемой последова-тельности,
  []
 
 
-Overfull \hbox (1.25026pt too wide) in paragraph at lines 92--97
+Overfull \hbox (1.25026pt too wide) in paragraph at lines 94--99
 \T2A/cmr/m/n/10.95 Затем, пока элемент с индексом $\OML/cmm/m/it/10.95 i \OMS/c
 msy/m/n/10.95 ^^T$ \T2A/cmr/m/n/10.95 элементу с индексом $\OML/cmm/m/it/10.95 
 j$\T2A/cmr/m/n/10.95 , будем декремен-тировать $\OML/cmm/m/it/10.95 i$ \T2A/cmr
@@ -1049,7 +1049,7 @@ j$\T2A/cmr/m/n/10.95 , будем декремен-тировать $\OML/cmm/m/it/10.95 i$ \T2A/cmr
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
+Underfull \hbox (badness 10000) in paragraph at lines 100--103
 
  []
 
@@ -1060,7 +1060,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.105 \end{center}
+l.107 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1072,16 +1072,35 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2.
  [2]
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <5> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 41.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 45.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
  [3] [4]
-Overfull \hbox (37.45082pt too wide) in paragraph at lines 181--182
+Overfull \hbox (37.45082pt too wide) in paragraph at lines 177--178
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[5]) (/usr/share/texmf/tex/latex/base/utf8.def
+[5]
+Overfull \hbox (65.39836pt too wide) in paragraph at lines 233--234
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\T2A/cmr/
+m/n/8 сохранение[]результата[]времени[]сортировки[] 
+ []
+
+
+Overfull \hbox (184.27493pt too wide) in paragraph at lines 234--235
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
+T2A/cmr/m/n/8 Ошибка[][]массив[]не[]был[]отсортирован[][][]проверка[]на[]коррек
+тность[]сортировки[][] 
+ []
+
+
+Overfull \hbox (2.79666pt too wide) in paragraph at lines 239--240
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
+T2A/cmr/m/n/8 Ошибка[][]массив[]не[]был[]отсортирован[][] 
+ []
+
+) (/usr/share/texmf/tex/latex/base/utf8.def
 File: utf8.def 2006/03/30 v1.1i UTF-8 support for inputenc
 ) (./listing
 Overfull \hbox (6.85802pt too wide) in paragraph at lines 4--5
@@ -1120,9 +1139,9 @@ Overfull \hbox (6.85802pt too wide) in paragraph at lines 9--10
  []
 
 )
-Overfull \hbox (6.85802pt too wide) in paragraph at lines 10--112
+Overfull \hbox (6.85802pt too wide) in paragraph at lines 10--114
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][] 
+][][][][][][][][] 
  []
 
 
@@ -1132,18 +1151,18 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.121 \end{center}
+l.123 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--129
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
 \T2A/cmr/m/n/10.95 Обозначает максимально возможное значение элемента массива;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--129
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
 
  []
 
@@ -1154,7 +1173,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.131 \end{center}
+l.133 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1166,7 +1185,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.136 {
+l.138 {
        \bf menu1}. РўРёРї, РѕРїСЂРµРґРµР»СЏРµРјС‹Р№ РїРµСЂРµРјРµРЅРЅСѓСЋ РїР...
 
 Your command was ignored.
@@ -1174,7 +1193,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (3.05669pt too wide) in paragraph at lines 136--138
+Overfull \hbox (3.05669pt too wide) in paragraph at lines 138--140
 []\T2A/cmr/bx/n/10.95 menu1\T2A/cmr/m/n/10.95 . Тип, определяемый переменную пе
 речисляемого типа (BIN-TREE,QSORT). Иcпользуется
  []
@@ -1186,7 +1205,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.140 {
+l.142 {
        \bf menu2}.  РўРёРї, РѕРїСЂРµРґРµР»СЏРµРјС‹Р№ РїРµСЂРµРјРµРЅРЅСѓСЋ Рї...
 
 Your command was ignored.
@@ -1194,7 +1213,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (7.63704pt too wide) in paragraph at lines 140--142
+Overfull \hbox (7.63704pt too wide) in paragraph at lines 142--144
 []\T2A/cmr/bx/n/10.95 menu2\T2A/cmr/m/n/10.95 . Тип, определяемый переменную пе
 речисляемого типа (t250,t500,t1000,t4000,t8000,t16000).
  []
@@ -1206,7 +1225,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.144 {
+l.146 {
        \bf menu3}.  РўРёРї, РѕРїСЂРµРґРµР»СЏРµРјС‹Р№ РїРµСЂРµРјРµРЅРЅСѓСЋ Рї...
 
 Your command was ignored.
@@ -1214,7 +1233,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (17.24448pt too wide) in paragraph at lines 144--146
+Overfull \hbox (17.24448pt too wide) in paragraph at lines 146--148
 []\T2A/cmr/bx/n/10.95 menu3\T2A/cmr/m/n/10.95 . Тип, определяемый переменную пе
 речисляемого типа (SORTED,ASORTED,CHILD,RAND).
  []
@@ -1226,8 +1245,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.148 {
-       \bf tdirs}. РўРёРї, РѕРїСЂРµРґРµР»СЏРµРјС‹Р№ РїРµСЂРµРјРµРЅРЅСѓСЋ РїР...
+l.150 {
+       \bf PTreeType}.РўРёРї, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅ...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1240,14 +1259,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.152 {
+l.154 {
        \bf rectree}. РўРёРї, РѕРїСЂРµРґРµР»СЏРµРјС‹Р№ РєР°Рє Р·Р°РїРёСЃСЊ Рё...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[6]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -1255,7 +1273,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.155 {
+l.157 {
        \bf table}. РўРёРї, РѕРїСЂРµРґРµР»СЏРµРјС‹Р№ РєР°Рє Р·Р°РїРёСЃСЊ РёР·...
 
 Your command was ignored.
@@ -1263,7 +1281,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--157
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
 
  []
 
@@ -1274,24 +1292,24 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.163 \end{center}
+l.165 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-Overfull \hbox (0.16045pt too wide) in paragraph at lines 165--168
+[6]
+Overfull \hbox (0.16045pt too wide) in paragraph at lines 167--170
 []\T2A/cmr/m/n/10.95 Функция проверки переданного ей массива $\OML/cmm/m/it/10.
 95 a$ \T2A/cmr/m/n/10.95 на отсотированность: если все элементы с большими
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--168
+Underfull \hbox (badness 10000) in paragraph at lines 167--170
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--177
+Underfull \hbox (badness 10000) in paragraph at lines 174--179
 
  []
 
@@ -1302,25 +1320,25 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.179 \end{center}
+l.181 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--184
+Underfull \hbox (badness 10000) in paragraph at lines 183--186
 
  []
 
 
-Overfull \hbox (10.09543pt too wide) in paragraph at lines 188--193
+Overfull \hbox (10.09543pt too wide) in paragraph at lines 190--195
 \T2A/cmr/m/n/10.95 рекурсию, переменные $\OML/cmm/m/it/10.95 l$ \T2A/cmr/m/n/10
 .95 и $\OML/cmm/m/it/10.95 u$ \T2A/cmr/m/n/10.95 не могут быть заданы в теле пр
 оцедуры явным образом. В первоначальном
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--193
+Underfull \hbox (badness 10000) in paragraph at lines 190--195
 
  []
 
@@ -1331,22 +1349,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.195 \end{center}
+l.200 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--200
+Underfull \hbox (badness 10000) in paragraph at lines 202--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--206
+Underfull \hbox (badness 10000) in paragraph at lines 209--211
 
  []
 
-[7]
 
 ! LaTeX Error: Something's wrong--perhaps a missing \item.
 
@@ -1354,16 +1371,16 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.208 \end{center}
+l.213 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-<./scheme.png, id=423, 2768.3425pt x 4375.34625pt>
+<./scheme.png, id=406, 2768.3425pt x 4375.34625pt>
 File: ./scheme.png Graphic file (type png)
- <use ./scheme.png>
+ <use ./scheme.png> [7]
 ! Too many }'s.
-l.212 \end{flushright}}
+l.217 \end{flushright}}
                        \\
 You've closed more groups than you opened.
 Such booboos are generally harmless, so keep going.
@@ -1375,13 +1392,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.213 
+l.218 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[8 <./scheme.png (PNG copy)>] <./graphic.png, id=428, 803.0pt x 602.25pt>
+[8 <./scheme.png (PNG copy)>] <./graphic.png, id=415, 803.0pt x 602.25pt>
 File: ./graphic.png Graphic file (type png)
 
 <use ./graphic.png>
@@ -1392,27 +1409,27 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.249 
+l.254 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (4.89183pt too wide) in paragraph at lines 255--257
+Overfull \hbox (4.89183pt too wide) in paragraph at lines 260--262
 []\T2A/cmr/m/n/10.95 Анализируя приведенные выше результаты, можно прийти к выв
 оду, что \T2A/cmr/bx/n/10.95 сортировка бинарным
  []
 
 
-Overfull \hbox (1.18365pt too wide) in paragraph at lines 255--257
+Overfull \hbox (1.18365pt too wide) in paragraph at lines 260--262
 \T2A/cmr/bx/n/10.95 деревом \T2A/cmr/m/n/10.95 и \T2A/cmr/bx/n/10.95 быстрая со
 ртировка \T2A/cmr/m/n/10.95 выполняются практически за равное время для последо
 вательнос-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--257
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 
  []
 
@@ -1423,29 +1440,29 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.260 \end{center}
+l.265 \end{center}
                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (11.49763pt too wide) in paragraph at lines 262--263
+Overfull \hbox (11.49763pt too wide) in paragraph at lines 267--268
 []\T2A/cmr/m/n/10.95 При таком, сравнительно небольшом, значении $\OML/cmm/m/it
 /10.95 N$ \T2A/cmr/m/n/10.95 оба метода показали себя как быстрые алгоритмы
  []
 
 [9 <./graphic.png>]
-Overfull \hbox (27.16615pt too wide) in paragraph at lines 264--265
+Overfull \hbox (27.16615pt too wide) in paragraph at lines 269--270
 \T2A/cmr/m/n/10.95 числовых последовательностей. Скорость сортировки и простота
  реализации предоставляют возможность
  []
 
 [10] (./KursWork.aux) ) 
 Here is how much of TeX's memory you used:
- 10930 strings out of 256216
- 154357 string characters out of 1917072
- 283314 words of memory out of 1500000
- 13637 multiletter control sequences out of 10000+200000
+ 10922 strings out of 256216
+ 154223 string characters out of 1917072
+ 278314 words of memory out of 1500000
+ 13642 multiletter control sequences out of 10000+200000
  18670 words of font info for 51 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  46i,8n,72p,1140b,1527s stack positions out of 5000i,500n,6000p,200000b,15000s
@@ -1463,9 +1480,9 @@ r/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/bl
 uesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/shar
 e/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky
 /cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/ams/msbm10.pfb>
-Output written on KursWork.pdf (11 pages, 589309 bytes).
+Output written on KursWork.pdf (11 pages, 588319 bytes).
 PDF statistics:
- 1060 PDF objects out of 1200 (max. 8388607)
- 299 named destinations out of 1000 (max. 131072)
+ 1048 PDF objects out of 1200 (max. 8388607)
+ 286 named destinations out of 1000 (max. 131072)
  187 words of extra memory for PDF output out of 10000 (max. 10000000)
 

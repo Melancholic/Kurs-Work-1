@@ -9,247 +9,234 @@
      9	    menu1=(BINTREE,QSORT);
     10	    menu2=(t250,t500,t1000,t2000,t4000,t8000,t16000);
     11	    menu3=(SORTED,ASORTED,CHILD,RAND);
-    12	    
-    13	    tdirs =(left,right,up);
-    14	
-    15	    table=record
-    16	        size:longint;
-    17	        Time: array[menu3] of extended;
-    18	    end;
-    19	    
-    20	    TableType=array [menu2] of table;
-    21	    
-    22	    rectree=record
-    23	        data:longint;
-    24	        dirs: array [tdirs] of word
-    25	    end;
-    26	
-    27	(*Подключение библиотеки, для работы с сис. таймером*)
-    28	
-    29	{$L timer.o}
-    30	Procedure init_timer; cdecl; external;
-    31	Function get_timer: longint; cdecl; external;
-    32	{$LinkLib c}
-    33	
-    34	(*Проверка на сортировку*)
-    35	function TestSort(a:arr):boolean;
-    36	var
-    37	    i:longint;
-    38	    sorttest:boolean;
-    39	begin
-    40	    sorttest:=true;
-    41	    for i:=0 to high(a)-1 do
-    42	        if a[i] < a[i+1] then begin
-    43	        sorttest:=false;
-    44	        break;
-    45	    end;
-    46	    TestSort:=sorttest;
-    47	    
-    48	end;
-    49	
-    50	(*Копирование массива*)
-    51	procedure CopyArr(a,b:arr);
-    52	var 
-    53	    i:longint;
-    54	begin
-    55	    for i:=low(a) to high(a) do
-    56	        b[i]:=a[i];
-    57	    i:=random(high(a)-1)+1;
-    58	    if a[i]<> b[i] then writeln('ERR COPY');
-    59	
-    60	    end;
-    61	
-    62	(*процедура смены 2х эл-тов массива*)
-    63	procedure exch(var ar:arr;a,b:longint);
-    64	var
-    65	    tmp:longint;
-    66	begin
-    67	    tmp:=ar[a];
-    68	    ar[a]:=ar[b];
-    69	    ar[b]:=tmp;
-    70	end;
-    71	
-    72	(*Быстрая сортировка, метод Хоара*)
-    73	procedure SortQuick(var a:arr;l,u:longint);
-    74	var
-    75	    i,j:longint;
-    76	begin;
-    77	    i:=l;
-    78	     j:=u;
-    79	    repeat
-    80	        while i<>j do begin
-    81	            if a[i]>=a[j] then
-    82	                dec(j)
-    83	            else begin
-    84	                exch(a,i,j);
-    85	                break
-    86	            end;
-    87	        end;
-    88	        while i<>j do begin
-    89	            if a[i]>=a[j] then
-    90	                inc(i)
-    91	            else begin
-    92	                exch(a,i,j);
-    93	                break
-    94	            end;
-    95	        end;
-    96	    until i=j;
-    97	    if i-1>l then 
-    98	                    SortQuick(a,l,i-1);
-    99	    if j+1<u then
-   100	                    SortQuick(a,j+1,u);
-   101	end;
-   102	
-   103	(*Сортировка бинарным деревом*)
-   104	procedure SortTree(a:arr);
-   105	var
-   106	    tree:array of rectree;
-   107	    dir:tdirs;
-   108	    i,j,k:longint;
-   109	begin
-   110	    setlength(tree,high(a)+1);
-   111	    for i:= 1 to high(a)+1 do
-   112	        for dir :=left to right do
-   113	            tree[i].dirs[dir]:=0;
-   114	    tree[1].data:=a[1-1];
-   115	    tree[1].dirs[up]:=1;
-   116	    for i:=2 to high(a)+1 do begin
-   117	        j:=1;
-   118	        repeat
-   119	            k:=j;
-   120	            if tree[j].data<a[i-1] then
-   121	                dir:=left
-   122	            else
-   123	                dir:=right;
-   124	            j:= tree[j].dirs[dir]
-   125	        until j=0;
-   126	        tree[i].data:=a[i-1];
-   127	        tree[i].dirs[up]:=k;
-   128	        tree[k].dirs[dir]:=i;
-   129	    end;
-   130	    dir:= up;
-   131	    i:=1;
-   132	    j:=1;
-   133	    repeat
-   134	        case dir of
-   135	            up:begin
-   136	                while tree[j].dirs[left] <>0 do
-   137	                    j:=tree[j].dirs[left];
-   138	                a[i-1]:=tree[j].data;
-   139	                inc(i);
-   140	                if tree[j].dirs[right]<>0 then
-   141	                    j:=tree[j].dirs[right]
-   142	                else begin
-   143	                    if tree[tree[j].dirs[up]].dirs[left]=j then
-   144	                        dir:=left
-   145	                    else
-   146	                        dir:=right;
-   147	                    j:=tree[j].dirs[up]
-   148	                end
-   149	            end;
-   150	            left:begin
-   151	                a[i-1]:=tree[j].data;
-   152	                inc(i);
-   153	                if tree[j].dirs[right] = 0 then begin
-   154	                    if tree[tree[j].dirs[up]].dirs[left]<>j then
-   155	                        dir :=right;
-   156	                    j:= tree[j].dirs[up];
-   157	                end else begin
-   158	                    j:= tree[j].dirs[right];
-   159	                    dir:=up
-   160	                end
-   161	            end;
-   162	            right:begin
-   163	                if tree[tree[j].dirs[up]].dirs[left]=j then
-   164	                    dir:=left;
-   165	                j:=tree[j].dirs[up];
-   166	                end
-   167	            end;
-   168	    until i> high(a)+1;
-   169	end;
-   170	
-   171	(*Процедура печати таблицы*)
-   172	procedure print(a:TableType;b:TableType );
-   173	var
-   174	    i:menu2;
-   175	begin
-   176	    writeln();
-   177	    writeln(' ':15, 'Сортировка бинарным деревом / Быстрая сортировка (мс)');
-   178	    write('Размер' :15,'        Упорядоченные':15, '       Обратный порядок        ');
-   179	    writeln('Вырожденные            Случайные');
-   180	    for i:=t250 to t16000 do begin
-   181	    	write(a[i].size :7,'    ',  a[i].Time[SORTED]:10:4 ,' / ', b[i].Time[SORTED]:5:4,'    ');
-   182	        write( a[i].Time[ASORTED]:10:4 ,' / ', b[i].Time[ASORTED]:5:4,'    ');
-   183	        write( a[i].Time[CHILD]:10:4 ,' / ', b[i].Time[CHILD]:5:4,'    ');
-   184	        writeln( a[i].Time[RAND]:10:4 ,' / ', b[i].Time[RAND]:5:4,'    ');
-   185	
+    12	    tdirs =(left,right,up);
+    13	
+    14	    table=record
+    15	        size:longint;
+    16	        Time: array[menu3] of extended;
+    17	    end;
+    18	
+    19	    TableType=array [menu2] of table;
+    20	    
+    21	    PTreeType=^rectree;     
+    22	
+    23	     rectree=record
+    24	        data:longint;
+    25	        left, right,up:PTreeType;
+    26	    end;
+    27	(*Объявление глобальных переменных*)
+    28	var
+    29	   IndPrintTree :longint;
+    30	
+    31	(*Подключение библиотеки, для работы с сис. таймером*)
+    32	
+    33	{$L timer.o}
+    34	Procedure init_timer; cdecl; external;
+    35	Function get_timer: longint; cdecl; external;
+    36	{$LinkLib c}
+    37	
+    38	(*Проверка на сортировку*)
+    39	function TestSort(a:arr):boolean;
+    40	var
+    41	    i:longint;
+    42	    sorttest:boolean;
+    43	begin
+    44	    sorttest:=true;
+    45	    for i:=0 to high(a)-1 do
+    46	        if a[i] < a[i+1] then begin
+    47	        sorttest:=false;
+    48	        break;
+    49	    end;
+    50	    TestSort:=sorttest;
+    51	    
+    52	end;
+    53	
+    54	(*Копирование массива*)
+    55	procedure CopyArr(a,b:arr);
+    56	var 
+    57	    i:longint;
+    58	begin
+    59	    for i:=low(a) to high(a) do
+    60	        b[i]:=a[i];
+    61	    i:=random(high(a)-1)+1;
+    62	    if a[i]<> b[i] then writeln('ERR COPY');
+    63	
+    64	    end;
+    65	
+    66	(*процедура смены 2х эл-тов массива*)
+    67	procedure exch(var ar:arr;a,b:longint);
+    68	var
+    69	    tmp:longint;
+    70	begin
+    71	    tmp:=ar[a];
+    72	    ar[a]:=ar[b];
+    73	    ar[b]:=tmp;
+    74	end;
+    75	
+    76	(*Быстрая сортировка, метод Хоара*)
+    77	procedure SortQuick(var a:arr;l,u:longint);
+    78	var
+    79	    i,j:longint;
+    80	begin;
+    81	    i:=l;
+    82	     j:=u;
+    83	    repeat
+    84	        while i<>j do begin
+    85	            if a[i]>=a[j] then
+    86	                dec(j)
+    87	            else begin
+    88	                exch(a,i,j);
+    89	                break
+    90	            end;
+    91	        end;
+    92	        while i<>j do begin
+    93	            if a[i]>=a[j] then
+    94	                inc(i)
+    95	            else begin
+    96	                exch(a,i,j);
+    97	                break
+    98	            end;
+    99	        end;
+   100	    until i=j;
+   101	    if i-1>l then 
+   102	                    SortQuick(a,l,i-1);
+   103	    if j+1<u then
+   104	                    SortQuick(a,j+1,u);
+   105	end;
+   106	
+   107	(*Сортировка бинарным деревом*)
+   108	(*Обход дерева*)
+   109	procedure SurTree(node:PTreeType; var  a:arr; i:longint);
+   110	begin
+   111	       if node<>nil then begin
+   112	       SurTree(node^.right,a,i);
+   113	       a[IndPrintTree]:=node^.data;
+   114	       inc(IndPrintTree);
+   115	       SurTree(node^.left,a,i);
+   116	       end;
+   117	end;
+   118	
+   119	(*Поиск со вставкой эл-та*)
+   120	procedure SearchInsert(root:PTreeType; val:longint);
+   121	var
+   122	    current:PTreeType;
+   123	    prev:PTreeType;
+   124	    pnew:PTreeType;
+   125	begin
+   126	    current:=root;
+   127	   while(current<>nil)do begin
+   128	        prev:=current;
+   129	        if val< current^.data then current:=current^.left
+   130	        else current:=current^.right;
+   131	    end;
+   132	    new(pnew);
+   133	    pnew^.data:=val;
+   134	    pnew^.left:=nil;
+   135	    pnew^.right:=nil;
+   136	    if val<prev^.data then begin
+   137	             prev^.left:=pnew;
+   138	             pnew^.up:=prev^.left;
+   139		end
+   140	        else begin
+   141		    prev^.right:=pnew;
+   142	            pnew^.up:=prev^.right;
+   143	       end;
+   144	end;
+   145	   
+   146	
+   147	    
+   148	(*Сортировка бинарным деревом*)
+   149	procedure SortTree(var  a:arr);
+   150	var
+   151	i:longint;
+   152	root: PTreeType;
+   153	begin
+   154	IndPrintTree:=0;
+   155	    new(root);
+   156	    root^.data:=a[0];
+   157	    root^.left:=nil;
+   158	    root^.right:=nil;
+   159	    root^.up:=nil;
+   160	    for i:=1 to high(a) do
+   161	        SearchInsert(root, a[i]);	
+   162	    SurTree(root,a,0);
+   163	end;
+   164	
+   165	
+   166	
+   167	(*Процедура печати таблицы*)
+   168	procedure print(a:TableType;b:TableType );
+   169	var
+   170	    i:menu2;
+   171	begin
+   172	    writeln();
+   173	    writeln(' ':15, 'Сортировка бинарным деревом / Быстрая сортировка (мс)');
+   174	    write('Размер' :15,'        Упорядоченные':15, '       Обратный порядок        ');
+   175	    writeln('Вырожденные            Случайные');
+   176	    for i:=t250 to t16000 do begin
+   177	    	write(a[i].size :7,'    ',  a[i].Time[SORTED]:10:4 ,' / ', b[i].Time[SORTED]:5:4,'    ');
+   178	        write( a[i].Time[ASORTED]:10:4 ,' / ', b[i].Time[ASORTED]:5:4,'    ');
+   179	        write( a[i].Time[CHILD]:10:4 ,' / ', b[i].Time[CHILD]:5:4,'    ');
+   180	        writeln( a[i].Time[RAND]:10:4 ,' / ', b[i].Time[RAND]:5:4,'    ');
+   181	
+   182	
+   183	
+   184	    end;
+   185	end;
    186	
-   187	
-   188	    end;
-   189	end;
-   190	
-   191	(*Главная часть программы*)
-   192	var
-   193	    mas1,mas2:arr;
-   194	    i,max :longint;
-   195	    t2:menu2;
-   196	    t3:menu3;
-   197	    TableBinTreeSort:TableType;
-   198	    TableQSort: TableType;
-   199	begin
-   200	    randomize;
-   201	    for t3:=SORTED to RAND do  
-   202	         for t2:=t250 to t16000 do begin
-   203	            case t2 of
-   204	                t250:max:=250;
-   205	                t500: max:=500;
-   206	                t1000: max:=1000;
-   207	                t2000: max:=2000;
-   208	                t4000: max:=4000;
-   209	                t8000: max:=8000;
-   210	                t16000: max:=16000;
-   211	            end;
-   212	        
-   213	            setlength(mas1,max);
-   214	            setlength(mas2,max);
-   215	            TableBinTreeSort[t2].size:=max;
-   216	            TableQSort[t2].size:=max;
-   217	            dec(max);
-   218	            case t3 of
-   219	                SORTED: begin
-   220	                    mas1[0]:=maxnumber;
+   187	(*Главноая часть программы*)
+   188	var
+   189	    mas1,mas2:arr;
+   190	    i,max :longint;
+   191	    t2:menu2;
+   192	    t3:menu3;
+   193	    TableBinTreeSort:TableType;
+   194	    TableQSort: TableType;
+   195	begin
+   196	    randomize;
+   197	    for t3:=SORTED to RAND do  
+   198	         for t2:=t250 to t16000 do begin
+   199	            case t2 of(*Определение размера массива*)
+   200	                t250:max:=250;
+   201	                t500: max:=500;
+   202	                t1000: max:=1000;
+   203	                t2000: max:=2000;
+   204	                t4000: max:=4000;
+   205	                t8000: max:=8000;
+   206	                t16000: max:=16000;
+   207	            end;
+   208	            setlength(mas1,max);
+   209	            setlength(mas2,max);
+   210	            TableBinTreeSort[t2].size:=max;
+   211	            TableQSort[t2].size:=max;
+   212	            dec(max);
+   213	            case t3 of(*Определение типа заполнения массива*)
+   214	                SORTED: begin
+   215	                    mas1[0]:=maxnumber;
+   216	                    for i:=1 to high(mas1) do
+   217	                        mas1[i]:=mas1[i-1]-random(maxnumber div (max+1))-1;
+   218	                end;
+   219	                ASORTED: begin
+   220	                    mas1[0]:=1;
    221	                    for i:=1 to high(mas1) do
-   222	                        mas1[i]:=mas1[i-1]-random(maxnumber div (max+1))-1;
+   222	                        mas1[i]:=mas1[i-1]+random(maxnumber div (max+1))-1;
    223	                end;
-   224	                ASORTED: begin
-   225	                    mas1[0]:=1;
-   226	                    for i:=1 to high(mas1) do
-   227	                        mas1[i]:=mas1[i-1]+random(maxnumber div (max+1))-1;
-   228	                end;
-   229	                CHILD: for i:=0 to high(mas1) do
-   230	                    mas1[i]:=random(12)+1;
-   231	                RAND: for i:=low(mas1) to high(mas1) do
-   232	                    mas1[i]:=random(maxnumber)+1;
-   233	            end;
-   234	
-   235	            CopyArr(mas1,mas2);
-   236	
-   237	            init_timer();
-   238	                SortTree(mas1);
-   239	                TableBinTreeSort[t2].Time[t3]:=get_timer()/1000;
-   240	                if(testsort(mas1)=false) then begin 
-   241			    writeln ('Ошибка: массив не был отсортирован');
-   242	       		    exit;
-   243			end;
-   244	            CopyArr(mas2,mas1);
-   245	                init_timer();
-   246	                SortQuick(mas1,0,high(mas1)+1);
-   247	                TableQSort[t2].Time[t3]:=get_timer()/1000;
-   248	                if(testsort(mas1)=false) then begin
-   249			    writeln ('Ошибка: массив не был отсортирован');
-   250			    exit;
-   251			end;
-   252	        end;
-   253	
-   254	    print(TableBinTreeSort,TableQSort);
-   255	end.
+   224	                CHILD: for i:=0 to high(mas1) do
+   225	                    mas1[i]:=random(12)+1;
+   226	                RAND: for i:=low(mas1) to high(mas1) do
+   227	                    mas1[i]:=random(maxnumber)+1;
+   228	            end;
+   229	
+   230	            CopyArr(mas1,mas2);(*копирование массива*)
+   231	            init_timer();(*инициализация таймера*)
+   232	                SortTree(mas1);(*сортировка по алгоритму 1*)
+   233	                TableBinTreeSort[t2].Time[t3]:=get_timer()/1000;(*сохранение результата времени сортировки*)
+   234	                if(testsort(mas1)=false) then writeln ('Ошибка: массив не был отсортирован');(*проверка на корректность сортировки*);
+   235	            CopyArr(mas2,mas1);(*восстановление массива из копии*)
+   236	                init_timer();
+   237	                SortQuick(mas1,0,high(mas1)+1);
+   238	                TableQSort[t2].Time[t3]:=get_timer()/1000;
+   239	                if(testsort(mas1)=false) then writeln ('Ошибка: массив не был отсортирован');
+   240		end;
+   241	    print(TableBinTreeSort,TableQSort);(*печать таблицы с результатами*)
+   242	end.

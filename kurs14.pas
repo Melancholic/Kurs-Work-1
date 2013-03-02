@@ -9,20 +9,24 @@ type
     menu1=(BINTREE,QSORT);
     menu2=(t250,t500,t1000,t2000,t4000,t8000,t16000);
     menu3=(SORTED,ASORTED,CHILD,RAND);
-    
     tdirs =(left,right,up);
 
     table=record
         size:longint;
         Time: array[menu3] of extended;
     end;
-    
+
     TableType=array [menu2] of table;
     
-    rectree=record
+    PTreeType=^rectree;     
+
+     rectree=record
         data:longint;
-        dirs: array [tdirs] of word
+        left, right,up:PTreeType;
     end;
+(*Объявление глобальных переменных*)
+var
+   IndPrintTree :longint;
 
 (*Подключение библиотеки, для работы с сис. таймером*)
 
@@ -101,72 +105,64 @@ begin;
 end;
 
 (*Сортировка бинарным деревом*)
-procedure SortTree(a:arr);
-var
-    tree:array of rectree;
-    dir:tdirs;
-    i,j,k:longint;
+(*Обход дерева*)
+procedure SurTree(node:PTreeType; var  a:arr; i:longint);
 begin
-    setlength(tree,high(a)+1);
-    for i:= 1 to high(a)+1 do
-        for dir :=left to right do
-            tree[i].dirs[dir]:=0;
-    tree[1].data:=a[1-1];
-    tree[1].dirs[up]:=1;
-    for i:=2 to high(a)+1 do begin
-        j:=1;
-        repeat
-            k:=j;
-            if tree[j].data<a[i-1] then
-                dir:=left
-            else
-                dir:=right;
-            j:= tree[j].dirs[dir]
-        until j=0;
-        tree[i].data:=a[i-1];
-        tree[i].dirs[up]:=k;
-        tree[k].dirs[dir]:=i;
-    end;
-    dir:= up;
-    i:=1;
-    j:=1;
-    repeat
-        case dir of
-            up:begin
-                while tree[j].dirs[left] <>0 do
-                    j:=tree[j].dirs[left];
-                a[i-1]:=tree[j].data;
-                inc(i);
-                if tree[j].dirs[right]<>0 then
-                    j:=tree[j].dirs[right]
-                else begin
-                    if tree[tree[j].dirs[up]].dirs[left]=j then
-                        dir:=left
-                    else
-                        dir:=right;
-                    j:=tree[j].dirs[up]
-                end
-            end;
-            left:begin
-                a[i-1]:=tree[j].data;
-                inc(i);
-                if tree[j].dirs[right] = 0 then begin
-                    if tree[tree[j].dirs[up]].dirs[left]<>j then
-                        dir :=right;
-                    j:= tree[j].dirs[up];
-                end else begin
-                    j:= tree[j].dirs[right];
-                    dir:=up
-                end
-            end;
-            right:begin
-                if tree[tree[j].dirs[up]].dirs[left]=j then
-                    dir:=left;
-                j:=tree[j].dirs[up];
-                end
-            end;
-    until i> high(a)+1;
+       if node<>nil then begin
+       SurTree(node^.right,a,i);
+       a[IndPrintTree]:=node^.data;
+       inc(IndPrintTree);
+       SurTree(node^.left,a,i);
+       end;
 end;
+
+(*Поиск со вставкой эл-та*)
+procedure SearchInsert(root:PTreeType; val:longint);
+var
+    current:PTreeType;
+    prev:PTreeType;
+    pnew:PTreeType;
+begin
+    current:=root;
+   while(current<>nil)do begin
+        prev:=current;
+        if val< current^.data then current:=current^.left
+        else current:=current^.right;
+    end;
+    new(pnew);
+    pnew^.data:=val;
+    pnew^.left:=nil;
+    pnew^.right:=nil;
+    if val<prev^.data then begin
+             prev^.left:=pnew;
+             pnew^.up:=prev^.left;
+	end
+        else begin
+	    prev^.right:=pnew;
+            pnew^.up:=prev^.right;
+       end;
+end;
+   
+
+    
+(*Сортировка бинарным деревом*)
+procedure SortTree(var  a:arr);
+var
+i:longint;
+root: PTreeType;
+begin
+IndPrintTree:=0;
+    new(root);
+    root^.data:=a[0];
+    root^.left:=nil;
+    root^.right:=nil;
+    root^.up:=nil;
+    for i:=1 to high(a) do
+        SearchInsert(root, a[i]);	
+    SurTree(root,a,0);
+end;
+
+
 
 (*Процедура печати таблицы*)
 procedure print(a:TableType;b:TableType );
@@ -188,7 +184,7 @@ begin
     end;
 end;
 
-(*Главная часть программы*)
+(*Главноая часть программы*)
 var
     mas1,mas2:arr;
     i,max :longint;
@@ -200,7 +196,7 @@ begin
     randomize;
     for t3:=SORTED to RAND do  
          for t2:=t250 to t16000 do begin
-            case t2 of
+            case t2 of(*Определение размера массива*)
                 t250:max:=250;
                 t500: max:=500;
                 t1000: max:=1000;
@@ -209,13 +205,12 @@ begin
                 t8000: max:=8000;
                 t16000: max:=16000;
             end;
-        
             setlength(mas1,max);
             setlength(mas2,max);
             TableBinTreeSort[t2].size:=max;
             TableQSort[t2].size:=max;
             dec(max);
-            case t3 of
+            case t3 of(*Определение типа заполнения массива*)
                 SORTED: begin
                     mas1[0]:=maxnumber;
                     for i:=1 to high(mas1) do
@@ -232,24 +227,16 @@ begin
                     mas1[i]:=random(maxnumber)+1;
             end;
 
-            CopyArr(mas1,mas2);
-
-            init_timer();
-                SortTree(mas1);
-                TableBinTreeSort[t2].Time[t3]:=get_timer()/1000;
-                if(testsort(mas1)=false) then begin 
-		    writeln ('Ошибка: массив не был отсортирован');
-       		    exit;
-		end;
-            CopyArr(mas2,mas1);
+            CopyArr(mas1,mas2);(*копирование массива*)
+            init_timer();(*инициализация таймера*)
+                SortTree(mas1);(*сортировка по алгоритму 1*)
+                TableBinTreeSort[t2].Time[t3]:=get_timer()/1000;(*сохранение результата времени сортировки*)
+                if(testsort(mas1)=false) then writeln ('Ошибка: массив не был отсортирован');(*проверка на корректность сортировки*);
+            CopyArr(mas2,mas1);(*восстановление массива из копии*)
                 init_timer();
                 SortQuick(mas1,0,high(mas1)+1);
                 TableQSort[t2].Time[t3]:=get_timer()/1000;
-                if(testsort(mas1)=false) then begin
-		    writeln ('Ошибка: массив не был отсортирован');
-		    exit;
-		end;
-        end;
-
-    print(TableBinTreeSort,TableQSort);
+                if(testsort(mas1)=false) then writeln ('Ошибка: массив не был отсортирован');
+	end;
+    print(TableBinTreeSort,TableQSort);(*печать таблицы с результатами*)
 end.
